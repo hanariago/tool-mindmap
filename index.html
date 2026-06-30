@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#F7F5F0" />
+
+  <title>마인드맵 에디터 - 무료 온라인 마인드맵·플로우차트 도구</title>
+  <meta name="description" content="브라우저에서 100% 동작하는 무료 마인드맵·플로우차트 에디터. 노드·연결선·계층 구조, 자동 저장, PNG·Markdown·Mermaid 내보내기. 설치·로그인 없이, 서버 전송 없이 사용." />
+  <meta name="keywords" content="마인드맵, 마인드맵 만들기, 무료 마인드맵, 플로우차트, 순서도, 브레인스토밍, 아이디어 정리, 마인드맵 도구, mindmap, mind map maker, flowchart, free mindmap, brainstorming, diagram, mermaid, markdown" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Lena" />
+  <link rel="canonical" href="https://hanariago.github.io/tool-mindmap/" />
+
+  <link rel="alternate" hreflang="ko" href="https://hanariago.github.io/tool-mindmap/?lang=ko" />
+  <link rel="alternate" hreflang="en" href="https://hanariago.github.io/tool-mindmap/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://hanariago.github.io/tool-mindmap/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="마인드맵 에디터 - 무료 온라인 마인드맵·플로우차트 도구" />
+  <meta property="og:description" content="기획·아이디어 정리용 마인드맵/플로우차트 에디터. 브라우저 100%, 로컬 저장, 서버 전송 없음. PNG·Markdown·Mermaid 내보내기." />
+  <meta property="og:url" content="https://hanariago.github.io/tool-mindmap/" />
+  <meta property="og:site_name" content="tool-mindmap" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="마인드맵 에디터 - 무료 온라인 마인드맵·플로우차트 도구" />
+  <meta name="twitter:description" content="브라우저 100% 마인드맵/플로우차트 에디터. PNG·Markdown·Mermaid 내보내기. 서버 전송 없음." />
+  <meta name="twitter:creator" content="@thezenvoid" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- JSON-LD: WebApplication + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "마인드맵 에디터 (tool-mindmap)",
+        "url": "https://hanariago.github.io/tool-mindmap/",
+        "description": "브라우저에서 100% 동작하는 무료 마인드맵·플로우차트 에디터. 노드·연결선·계층 구조, 자동 저장, PNG·Markdown·Mermaid 내보내기.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires JavaScript. Works in modern browsers.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "inLanguage": ["ko", "en"],
+        "featureList": [
+          "노드 생성·삭제·드래그", "노드 간 연결선(화살표)", "인라인 텍스트 편집",
+          "노드 모양·색상 선택", "확대·축소·패닝", "부모-자식 계층·접기",
+          "자동 저장(localStorage)", "여러 맵 관리", "실행취소·다시실행",
+          "PNG·Markdown·Mermaid·SVG 내보내기"
+        ],
+        "author": { "@type": "Person", "name": "Lena", "url": "https://x.com/thezenvoid" },
+        "license": "https://opensource.org/licenses/MIT",
+        "isAccessibleForFree": true
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "내가 만든 맵은 어디에 저장되나요?", "acceptedAnswer": { "@type": "Answer", "text": "모든 데이터는 사용 중인 브라우저(localStorage)에만 저장되며 어떤 서버로도 전송되지 않습니다. 새로고침하거나 브라우저를 닫아도 작업이 유지됩니다." } },
+          { "@type": "Question", "name": "무료인가요? 로그인이 필요한가요?", "acceptedAnswer": { "@type": "Answer", "text": "완전 무료이며 로그인·설치가 필요 없습니다. 페이지를 열면 바로 사용할 수 있습니다." } },
+          { "@type": "Question", "name": "만든 마인드맵을 내보낼 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "PNG 이미지, Markdown(들여쓰기 목록), Mermaid 문법, SVG 벡터로 내보낼 수 있습니다. JSON 백업/가져오기도 지원합니다." } },
+          { "@type": "Question", "name": "모바일에서도 쓸 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "네. 터치로 노드 이동, 핀치 줌, 화면 이동이 가능하고, 연결 전용 모드로 노드를 이어 그릴 수 있습니다." } },
+          { "@type": "Question", "name": "다른 기기와 동기화되나요?", "acceptedAnswer": { "@type": "Answer", "text": "로컬 저장 방식이라 자동 동기화는 없습니다. 대신 JSON 백업으로 내보낸 뒤 다른 기기에서 가져오기로 옮길 수 있습니다." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Top Toolbar ===== -->
+  <header id="toolbar">
+    <div class="tb-group tb-brand">
+      <button id="btnMaps" class="tb-btn" data-i18n-title="t.maps" title="맵 목록 (저장된 맵 불러오기/삭제)" aria-label="맵 목록">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <button id="mapName" class="tb-mapname" data-i18n-title="t.rename" title="맵 이름 변경 (클릭)">제목 없는 맵</button>
+    </div>
+
+    <div class="tb-group tb-main">
+      <button id="btnAddChild" class="tb-btn" data-i18n-title="t.addChild" title="자식 노드 추가 (Tab)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M12 5v14M5 12h14"/></svg>
+        <span class="tb-label" data-i18n="lbl.node">노드</span>
+      </button>
+      <button id="btnAddSibling" class="tb-btn only-wide" data-i18n-title="t.addSibling" title="형제 노드 추가 (Enter)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M9 6v12M15 6v12M3 12h18"/></svg>
+        <span class="tb-label" data-i18n="lbl.sibling">형제</span>
+      </button>
+      <button id="btnDelete" class="tb-btn" data-i18n-title="t.delete" title="선택 노드 삭제 (Delete)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M6 7h12M9 7V5h6v2M8 7l1 13h6l1-13"/></svg>
+      </button>
+
+      <button id="btnStyle" class="tb-btn" data-i18n-title="t.style" title="모양 · 색상">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.5 0-1 .8-1.5 1.5-1.5h1.5a3 3 0 0 0 3-3c0-5-3.6-9-9-9z"/><circle cx="7.5" cy="11" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16.5" cy="11" r="1"/></svg>
+      </button>
+
+      <span class="tb-sep pk-sep"></span>
+      <span id="pkAnchor" hidden></span>
+
+      <div class="tb-shapes" id="shapePicker" data-i18n-title="t.shape" title="노드 모양">
+        <button class="shape-btn" data-shape="round" data-i18n-title="shape.round" title="둥근 사각형"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"/></svg></button>
+        <button class="shape-btn" data-shape="rect" data-i18n-title="shape.rect" title="사각형"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12"/></svg></button>
+        <button class="shape-btn" data-shape="ellipse" data-i18n-title="shape.ellipse" title="원형"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6"/></svg></button>
+        <button class="shape-btn" data-shape="diamond" data-i18n-title="shape.diamond" title="다이아몬드"><svg viewBox="0 0 24 24"><path d="M12 4l8 8-8 8-8-8z"/></svg></button>
+      </div>
+
+      <span class="tb-sep pk-sep"></span>
+
+      <div class="tb-colors" id="colorPicker" data-i18n-title="t.color" title="노드 색상"></div>
+
+      <span class="tb-sep only-wide"></span>
+
+      <button id="btnUndo" class="tb-btn only-wide" data-i18n-title="t.undo" title="실행취소 (Ctrl+Z)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M9 14L4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3"/></svg>
+      </button>
+      <button id="btnRedo" class="tb-btn only-wide" data-i18n-title="t.redo" title="다시실행 (Ctrl+Shift+Z)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M15 14l5-5-5-5M20 9H9a5 5 0 0 0 0 10h3"/></svg>
+      </button>
+      <button id="btnTidy" class="tb-btn only-wide" data-i18n-title="t.tidy" title="자동 정렬 (트리 레이아웃)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M12 4v4M6 14v6M12 14v6M18 14v6M6 14h12M12 8v6"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      </button>
+    </div>
+
+    <div class="tb-group tb-right">
+      <button id="btnLang" class="tb-btn" data-i18n-title="t.lang" title="언어 / Language">
+        <svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21M12 3C9.5 5.5 8.2 8.7 8.2 12S9.5 18.5 12 21"/></svg>
+        <span class="tb-label" id="langLabel">EN</span>
+      </button>
+      <button id="btnFit" class="tb-btn" data-i18n-title="t.fit" title="전체 보기 (화면 맞춤)">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+      <button id="btnExport" class="tb-btn" data-i18n-title="t.export" title="내보내기">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M12 3v12M8 11l4 4 4-4M5 21h14"/></svg>
+        <span class="tb-label" data-i18n="lbl.export">내보내기</span>
+      </button>
+      <button id="btnHelp" class="tb-btn" data-i18n-title="t.help" title="도움말 / 단축키">
+        <svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7M12 17h.01"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Canvas ===== -->
+  <main id="stage">
+    <svg id="canvas" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+          <path d="M28 0H0V28" fill="none" stroke="#E4E0D6" stroke-width="1"/>
+        </pattern>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0L10 5L0 10z" fill="#8A9590"/>
+        </marker>
+        <marker id="arrowSel" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0L10 5L0 10z" fill="#3D6B5E"/>
+        </marker>
+      </defs>
+      <rect id="bg" x="0" y="0" width="100%" height="100%" fill="url(#grid)"/>
+      <g id="world">
+        <g id="edgeLayer"></g>
+        <g id="linkPreview"></g>
+        <g id="nodeLayer"></g>
+        <rect id="marquee" class="marquee" rx="2" style="display:none"/>
+      </g>
+    </svg>
+
+    <!-- Inline text editor overlay -->
+    <textarea id="editor" spellcheck="false"></textarea>
+
+    <!-- Empty-state guide (also holds crawlable intro + hub link) -->
+    <div id="emptyGuide">
+      <div class="eg-card">
+        <div class="eg-logo">
+          <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+        </div>
+        <h1>tool-mindmap</h1>
+        <p data-i18n="eg.sub">기획·아이디어를 빠르게 정리하는 마인드맵 에디터</p>
+        <ul class="eg-tips">
+          <li data-i18n-html="eg.tip1"><b>더블클릭</b> — 빈 공간에 노드 생성 / 노드 텍스트 편집</li>
+          <li data-i18n-html="eg.tip2"><b>Tab</b> — 자식 노드 · <b>Enter</b> — 형제 노드 추가</li>
+          <li data-i18n-html="eg.tip3"><b>드래그</b> — 노드 이동 · 노드 우측 <span class="dot">＋</span> 핸들에서 끌어 연결</li>
+          <li data-i18n-html="eg.tip4"><b>휠/핀치</b> — 확대·축소 · 빈 공간 드래그 — 화면 이동</li>
+        </ul>
+        <button id="egStart" class="eg-start" data-i18n="eg.start">중심 노드로 시작하기</button>
+        <p class="eg-foot" data-i18n="eg.foot">작업은 이 브라우저에 자동 저장됩니다 · 서버 전송 없음</p>
+        <a class="eg-hub" href="https://hanariago.github.io/tools-hub/" target="_blank" rel="noopener" data-i18n="hub">🔧 다른 도구 모음 →</a>
+      </div>
+    </div>
+
+    <!-- Zoom controls (bottom-right) -->
+    <div id="zoomCtl">
+      <button id="zoomOut" data-i18n-title="t.zoomOut" title="축소">−</button>
+      <button id="zoomReset" data-i18n-title="t.zoomReset" title="100%">100%</button>
+      <button id="zoomIn" data-i18n-title="t.zoomIn" title="확대">＋</button>
+    </div>
+
+    <!-- Mobile-only quick actions -->
+    <div id="mobileFab">
+      <button id="fabConnect" class="fab" data-i18n-title="t.connectMode" title="연결 모드">
+        <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 8l8 8"/></svg>
+      </button>
+      <button id="fabAdd" class="fab fab-main" data-i18n-title="t.addNode" title="노드 추가">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- ===== Maps drawer ===== -->
+  <div id="overlay" class="overlay"></div>
+  <aside id="mapsDrawer" class="drawer">
+    <div class="drawer-head">
+      <h2 data-i18n="drawer.title">내 맵</h2>
+      <button id="closeMaps" class="x-btn" aria-label="닫기">×</button>
+    </div>
+    <button id="btnNewMap" class="drawer-new" data-i18n="drawer.new">＋ 새 맵 만들기</button>
+    <ul id="mapsList" class="maps-list"></ul>
+    <div class="drawer-foot">
+      <button id="btnImportJson" class="ghost-btn" data-i18n="drawer.import">JSON 가져오기</button>
+      <button id="btnExportJson" class="ghost-btn" data-i18n="drawer.backup">JSON 백업</button>
+      <input id="fileImport" type="file" accept="application/json,.json" hidden />
+    </div>
+  </aside>
+
+  <!-- ===== Export menu ===== -->
+  <div id="exportMenu" class="popover">
+    <button data-exp="png" data-i18n="exp.png">🖼️ PNG 이미지로 저장</button>
+    <button data-exp="md" data-i18n="exp.md">📝 Markdown (들여쓰기 목록)</button>
+    <button data-exp="mermaid" data-i18n="exp.mermaid">🧜 Mermaid 문법으로 복사</button>
+    <button data-exp="svg" data-i18n="exp.svg">✒️ SVG 벡터로 저장</button>
+  </div>
+
+  <!-- ===== Style popover (mobile: shapes + colors) ===== -->
+  <div id="stylePopover" class="popover style-pop">
+    <div class="sp-label" data-i18n="sp.shape">모양</div>
+    <div class="sp-slot" id="spShapes"></div>
+    <div class="sp-label" data-i18n="sp.color">색상</div>
+    <div class="sp-slot" id="spColors"></div>
+  </div>
+
+  <!-- ===== Context menu ===== -->
+  <div id="ctxMenu" class="popover ctx">
+    <button data-act="edit" data-i18n="ctx.edit">✏️ 텍스트 편집</button>
+    <button data-act="child" data-i18n="ctx.child">➕ 자식 노드</button>
+    <button data-act="sibling" data-i18n="ctx.sibling">↔️ 형제 노드</button>
+    <button data-act="collapse" data-i18n="ctx.collapse">🔽 펼치기/접기</button>
+    <button data-act="duplicate" data-i18n="ctx.duplicate">⧉ 복제</button>
+    <button data-act="delete" class="danger" data-i18n="ctx.delete">🗑️ 삭제</button>
+  </div>
+
+  <!-- ===== Help / About / FAQ modal ===== -->
+  <div id="helpModal" class="modal-wrap">
+    <div class="modal">
+      <div class="modal-head"><h2 data-i18n="help.title">도움말 · 사용법 · FAQ</h2><button id="closeHelp" class="x-btn">×</button></div>
+
+      <section class="modal-intro">
+        <p data-i18n="help.intro">tool-mindmap은 설치·로그인 없이 브라우저에서 바로 쓰는 무료 마인드맵·플로우차트 에디터입니다. 기획 회의, 브레인스토밍, 글 구조 잡기, 순서도 그리기에 사용하세요. 만든 내용은 이 브라우저에만 저장되고 어떤 서버로도 전송되지 않습니다.</p>
+      </section>
+
+      <div class="modal-body">
+        <div class="help-col">
+          <h3 data-i18n="help.basic">기본 조작</h3>
+          <dl>
+            <dt data-i18n="help.b1">더블클릭(빈 공간)</dt><dd data-i18n="help.b1d">노드 생성</dd>
+            <dt data-i18n="help.b2">더블클릭(노드)</dt><dd data-i18n="help.b2d">텍스트 편집</dd>
+            <dt data-i18n="help.b3">드래그(노드)</dt><dd data-i18n="help.b3d">이동</dd>
+            <dt data-i18n="help.b4">＋ 핸들 드래그</dt><dd data-i18n="help.b4d">연결선 만들기</dd>
+            <dt data-i18n="help.b5">드래그(빈 공간)</dt><dd data-i18n="help.b5d">화면 이동(패닝)</dd>
+            <dt data-i18n="help.b6">휠 / 핀치</dt><dd data-i18n="help.b6d">확대·축소</dd>
+            <dt data-i18n="help.b7">우클릭</dt><dd data-i18n="help.b7d">노드 메뉴</dd>
+          </dl>
+        </div>
+        <div class="help-col">
+          <h3 data-i18n="help.keys">키보드 단축키</h3>
+          <dl>
+            <dt>Tab</dt><dd data-i18n="help.k1">자식 노드 추가</dd>
+            <dt>Enter</dt><dd data-i18n="help.k2">형제 노드 추가</dd>
+            <dt>F2</dt><dd data-i18n="help.k3">편집</dd>
+            <dt>Delete</dt><dd data-i18n="help.k4">삭제</dd>
+            <dt>Ctrl+Z</dt><dd data-i18n="help.k5">실행취소</dd>
+            <dt>Ctrl+Shift+Z</dt><dd data-i18n="help.k6">다시실행</dd>
+            <dt>Ctrl+D</dt><dd data-i18n="help.k7">복제</dd>
+            <dt data-i18n="help.k8t">방향키</dt><dd data-i18n="help.k8">인접 노드 선택</dd>
+            <dt>Space</dt><dd data-i18n="help.k9">펼치기/접기</dd>
+            <dt>Esc</dt><dd data-i18n="help.k10">편집·선택 취소</dd>
+          </dl>
+        </div>
+      </div>
+
+      <section class="modal-faq">
+        <h3 data-i18n="faq.title">자주 묻는 질문 (FAQ)</h3>
+        <details><summary data-i18n="faq.q1">내가 만든 맵은 어디에 저장되나요?</summary><p data-i18n="faq.a1">모든 데이터는 사용 중인 브라우저(localStorage)에만 저장되며 어떤 서버로도 전송되지 않습니다. 새로고침하거나 브라우저를 닫아도 작업이 유지됩니다.</p></details>
+        <details><summary data-i18n="faq.q2">무료인가요? 로그인이 필요한가요?</summary><p data-i18n="faq.a2">완전 무료이며 로그인·설치가 필요 없습니다. 페이지를 열면 바로 사용할 수 있습니다.</p></details>
+        <details><summary data-i18n="faq.q3">만든 마인드맵을 내보낼 수 있나요?</summary><p data-i18n="faq.a3">PNG 이미지, Markdown(들여쓰기 목록), Mermaid 문법, SVG 벡터로 내보낼 수 있습니다. JSON 백업/가져오기도 지원합니다.</p></details>
+        <details><summary data-i18n="faq.q4">모바일에서도 쓸 수 있나요?</summary><p data-i18n="faq.a4">네. 터치로 노드 이동, 핀치 줌, 화면 이동이 가능하고, 연결 전용 모드로 노드를 이어 그릴 수 있습니다.</p></details>
+        <details><summary data-i18n="faq.q5">다른 기기와 동기화되나요?</summary><p data-i18n="faq.a5">로컬 저장 방식이라 자동 동기화는 없습니다. 대신 JSON 백업으로 내보낸 뒤 다른 기기에서 가져오기로 옮길 수 있습니다.</p></details>
+      </section>
+
+      <footer class="modal-foot">
+        <span data-i18n="foot.privacy">모든 데이터는 이 브라우저(localStorage)에만 저장됩니다.</span>
+        <span class="foot-links">
+          <a href="https://github.com/hanariago/tool-mindmap" target="_blank" rel="noopener">GitHub</a> ·
+          <span data-i18n="foot.license">오픈소스 · MIT 라이선스</span> ·
+          Made by <a href="https://x.com/thezenvoid" target="_blank" rel="noopener">Lena</a> ·
+          <a href="https://hanariago.github.io/tools-hub/" target="_blank" rel="noopener" data-i18n="hub">🔧 다른 도구 모음 →</a>
+        </span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

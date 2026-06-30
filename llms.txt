@@ -1,0 +1,43 @@
+# tool-mindmap — 마인드맵·플로우차트 에디터 (Mindmap & Flowchart Editor)
+
+> 브라우저에서 100% 동작하는 무료 마인드맵/플로우차트 에디터. 설치·로그인·서버 전송 없음. 모든 데이터는 사용자의 브라우저(localStorage)에만 저장된다.
+> A free mindmap & flowchart editor that runs entirely in the browser. No install, no login, no server. All data is stored only in the user's browser (localStorage).
+
+- URL: https://hanariago.github.io/tool-mindmap/
+- 소스 / Source: https://github.com/hanariago/tool-mindmap
+- 라이선스 / License: MIT
+- 제작 / Author: Lena (https://x.com/thezenvoid)
+
+## 개요 / Overview
+tool-mindmap은 기획·아이디어 정리, 브레인스토밍, 글 구조 잡기, 순서도(플로우차트) 작성에 쓰는 단일 페이지 웹 도구다. 순수 바닐라 JS + SVG로 만들어졌고 외부 프레임워크 의존성이 없다.
+tool-mindmap is a single-page web tool for organizing plans and ideas, brainstorming, outlining, and drawing flowcharts. Built with plain vanilla JS + SVG, no framework dependencies.
+
+## 주요 기능 / Features
+- 노드 생성·삭제·드래그 이동 / create, delete, drag nodes
+- 노드 간 연결선(화살표 방향) / connections between nodes with arrows
+- 더블클릭 인라인 텍스트 편집(여러 줄) / double-click inline text editing (multiline)
+- 노드 모양 4종(둥근 사각형·사각형·원형·다이아몬드), 색상 8종 / 4 shapes, 8 colors
+- 확대/축소(휠·핀치), 패닝, 전체 보기 맞춤 / zoom (wheel/pinch), pan, fit-to-screen
+- 부모-자식 계층 구조와 펼치기/접기, 자동 트리 정렬 / parent-child hierarchy with collapse, auto tree layout
+- 자동 저장(localStorage), 여러 맵 관리(이름·목록·삭제) / auto-save, multiple maps
+- 실행취소/다시실행, 마인드맵 단축키(Tab=자식, Enter=형제) / undo/redo, mindmap shortcuts
+- 내보내기: PNG, Markdown(들여쓰기 목록), Mermaid 문법, SVG / export to PNG, Markdown, Mermaid, SVG
+- JSON 백업/가져오기 / JSON backup & import
+- 모바일: 터치 드래그·핀치 줌·연결 전용 모드 / mobile: touch drag, pinch zoom, connect mode
+- 한국어·영어 i18n / Korean & English UI
+
+## 자주 묻는 질문 / FAQ
+Q. 데이터는 어디 저장되나요? / Where is data stored?
+A. 브라우저(localStorage)에만 저장되고 서버로 전송되지 않습니다. / Only in the browser (localStorage); nothing is sent to a server.
+
+Q. 무료인가요? / Is it free?
+A. 완전 무료, 로그인·설치 불필요. / Completely free, no login or install.
+
+Q. 내보내기는 무엇을 지원하나요? / What export formats?
+A. PNG, Markdown, Mermaid, SVG, 그리고 JSON 백업. / PNG, Markdown, Mermaid, SVG, and JSON backup.
+
+Q. 모바일에서 쓸 수 있나요? / Does it work on mobile?
+A. 네. 터치·핀치 줌·연결 모드를 지원합니다. / Yes — touch, pinch zoom, and a connect mode.
+
+## 다른 도구 / Other tools
+- 도구 모음 허브 / Tools hub: https://hanariago.github.io/tools-hub/

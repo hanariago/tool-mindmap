@@ -1,0 +1,4 @@
+# local tooling / preview config — not part of the published tool
+.claude/
+.DS_Store
+Thumbs.db
