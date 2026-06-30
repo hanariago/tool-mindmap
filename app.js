@@ -85,6 +85,16 @@
       'toast.pngSaved': 'PNG 이미지 저장됨', 'toast.pngFail': 'PNG 내보내기 실패', 'toast.svgSaved': 'SVG 저장됨', 'toast.mdSaved': 'Markdown 저장됨', 'toast.mermaidCopied': 'Mermaid 문법을 클립보드에 복사했습니다',
       'toast.linkStart': '연결 시작 노드를 탭하세요', 'toast.linkTarget': '연결할 대상 노드를 탭하세요',
       'prompt.mapName': '맵 이름', 'mdHeading.links': '추가 연결',
+      'wel.title': 'tool-mindmap에 오신 걸 환영합니다 👋',
+      'wel.intro': '설치·로그인 없이 브라우저에서 바로 쓰는 마인드맵·플로우차트 에디터예요. 기획·아이디어를 빠르게 정리해 보세요. 만든 내용은 이 브라우저에만 저장되고 서버로 전송되지 않습니다.',
+      'wel.f1': '<b>노드 추가</b> — 빈 공간 더블클릭, 또는 <b>Tab</b>(자식)·<b>Enter</b>(형제)',
+      'wel.f2': '<b>연결</b> — 노드 우측 <span class="dotw">＋</span> 핸들을 드래그해서 이어요',
+      'wel.f3': '<b>꾸미기</b> — 상단 툴바에서 모양·색상 선택',
+      'wel.f4': '<b>이동·확대</b> — 휠/핀치로 줌, 빈 공간 드래그로 화면 이동',
+      'wel.f5': '<b>자동 저장</b> — 새로고침해도 유지 · 여러 맵 관리',
+      'wel.f6': '<b>내보내기</b> — PNG · Markdown · Mermaid · SVG',
+      'wel.hint': '자세한 단축키는 우측 상단 <b>?</b> 도움말에서 볼 수 있어요.',
+      'wel.hide': '오늘 다시 보지 않기', 'wel.close': '닫기',
     },
     en: {
       'map.untitled': 'Untitled map', 'node.new': 'New node', 'node.root': 'Central topic',
@@ -123,6 +133,16 @@
       'toast.pngSaved': 'PNG image saved', 'toast.pngFail': 'PNG export failed', 'toast.svgSaved': 'SVG saved', 'toast.mdSaved': 'Markdown saved', 'toast.mermaidCopied': 'Mermaid syntax copied to clipboard',
       'toast.linkStart': 'Tap the node to start the connection', 'toast.linkTarget': 'Tap the target node',
       'prompt.mapName': 'Map name', 'mdHeading.links': 'Extra connections',
+      'wel.title': 'Welcome to tool-mindmap 👋',
+      'wel.intro': 'A mindmap & flowchart editor that runs right in your browser — no install, no login. Quickly organize your plans and ideas. Everything you make is stored only in this browser and never sent to a server.',
+      'wel.f1': '<b>Add nodes</b> — double-click empty space, or <b>Tab</b> (child) · <b>Enter</b> (sibling)',
+      'wel.f2': '<b>Connect</b> — drag the <span class="dotw">＋</span> handle on the right of a node',
+      'wel.f3': '<b>Style</b> — pick shape & color from the top toolbar',
+      'wel.f4': '<b>Pan & zoom</b> — wheel/pinch to zoom, drag empty space to pan',
+      'wel.f5': '<b>Auto-save</b> — persists across reloads · manage multiple maps',
+      'wel.f6': '<b>Export</b> — PNG · Markdown · Mermaid · SVG',
+      'wel.hint': 'See all shortcuts in the <b>?</b> help at the top-right.',
+      'wel.hide': "Don't show again today", 'wel.close': 'Close',
     },
   };
   let LANG = 'ko';
@@ -874,6 +894,23 @@
   $('#closeHelp').addEventListener('click', () => $('#helpModal').classList.remove('show'));
   $('#helpModal').addEventListener('click', e => { if (e.target === $('#helpModal')) $('#helpModal').classList.remove('show'); });
 
+  // welcome / onboarding popup (first visit; suppressible per-day)
+  function todayStr() { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+  function showWelcome() { $('#welcomeHideToday').checked = false; $('#welcomeModal').classList.add('show'); }
+  function closeWelcome() {
+    if ($('#welcomeHideToday').checked) localStorage.setItem('tmm.welcomeHideDate', todayStr());
+    $('#welcomeModal').classList.remove('show');
+  }
+  function maybeShowWelcome() { if (localStorage.getItem('tmm.welcomeHideDate') !== todayStr()) showWelcome(); }
+  $('#welcomeClose').addEventListener('click', closeWelcome);
+  $('#welcomeX').addEventListener('click', closeWelcome);
+  $('#welcomeModal').addEventListener('click', e => { if (e.target === $('#welcomeModal')) closeWelcome(); });
+  window.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if ($('#welcomeModal').classList.contains('show')) { closeWelcome(); }
+    else if ($('#helpModal').classList.contains('show')) { $('#helpModal').classList.remove('show'); }
+  });
+
   // zoom controls
   $('#zoomIn').addEventListener('click', () => zoomCenter(1.2));
   $('#zoomOut').addEventListener('click', () => zoomCenter(0.83));
@@ -1089,8 +1126,8 @@
     const lastId = Store.last();
     if (lastId && Store.load(lastId)) loadMap(lastId);
     else { const idx = Store.index(); idx.length ? loadMap(idx[0].id) : bootNew(); }
-    // first-run guide if only the default single root untouched
     applyView();
+    maybeShowWelcome();
   }
 
   window.addEventListener('resize', () => { applyView(); relocatePickers(); });

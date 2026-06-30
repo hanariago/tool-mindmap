@@ -314,6 +314,32 @@
     </div>
   </div>
 
+  <!-- ===== Welcome / onboarding popup (first visit) ===== -->
+  <div id="welcomeModal" class="modal-wrap">
+    <div class="modal welcome">
+      <div class="modal-head">
+        <h2 data-i18n="wel.title">tool-mindmap에 오신 걸 환영합니다 👋</h2>
+        <button id="welcomeX" class="x-btn" aria-label="닫기" data-i18n-title="wel.close" title="닫기">×</button>
+      </div>
+      <div class="welcome-body">
+        <p class="welcome-intro" data-i18n="wel.intro">설치·로그인 없이 브라우저에서 바로 쓰는 마인드맵·플로우차트 에디터예요. 기획·아이디어를 빠르게 정리해 보세요. 만든 내용은 이 브라우저에만 저장되고 서버로 전송되지 않습니다.</p>
+        <ul class="welcome-feats">
+          <li><span class="wf-ic">🧠</span><span data-i18n-html="wel.f1"><b>노드 추가</b> — 빈 공간 더블클릭, 또는 <b>Tab</b>(자식)·<b>Enter</b>(형제)</span></li>
+          <li><span class="wf-ic">🔗</span><span data-i18n-html="wel.f2"><b>연결</b> — 노드 우측 <span class="dotw">＋</span> 핸들을 드래그해서 이어요</span></li>
+          <li><span class="wf-ic">🎨</span><span data-i18n-html="wel.f3"><b>꾸미기</b> — 상단 툴바에서 모양·색상 선택</span></li>
+          <li><span class="wf-ic">🔍</span><span data-i18n-html="wel.f4"><b>이동·확대</b> — 휠/핀치로 줌, 빈 공간 드래그로 화면 이동</span></li>
+          <li><span class="wf-ic">💾</span><span data-i18n-html="wel.f5"><b>자동 저장</b> — 새로고침해도 유지 · 여러 맵 관리</span></li>
+          <li><span class="wf-ic">📤</span><span data-i18n-html="wel.f6"><b>내보내기</b> — PNG · Markdown · Mermaid · SVG</span></li>
+        </ul>
+        <p class="welcome-hint" data-i18n-html="wel.hint">자세한 단축키는 우측 상단 <b>?</b> 도움말에서 볼 수 있어요.</p>
+      </div>
+      <div class="welcome-foot">
+        <label class="wel-check"><input type="checkbox" id="welcomeHideToday" /> <span data-i18n="wel.hide">오늘 다시 보지 않기</span></label>
+        <button id="welcomeClose" class="wel-close-btn" data-i18n="wel.close">닫기</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast -->
   <div id="toast" class="toast"></div>
 

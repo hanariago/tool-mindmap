@@ -197,6 +197,31 @@ svg.ic,.tb-btn svg,.shape-btn svg,.fab svg,.eg-logo svg{fill:none;stroke:current
 .modal-foot a{color:var(--point);text-decoration:none;font-weight:600}
 .modal-foot a:hover{text-decoration:underline}
 
+/* ===== Welcome / onboarding ===== */
+.modal.welcome{max-width:480px}
+.welcome-body{padding:8px 26px 4px}
+.welcome-intro{margin:0 0 16px;color:var(--ink-soft);font-size:13.5px;line-height:1.65}
+.welcome-feats{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.welcome-feats li{display:flex;align-items:flex-start;gap:11px;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.welcome-feats b{color:var(--point-deep);font-weight:700}
+.wf-ic{flex:none;width:30px;height:30px;border-radius:9px;background:var(--point-soft);display:grid;place-items:center;font-size:16px}
+.dotw{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--point);color:#fff;font-size:11px;vertical-align:middle}
+.welcome-hint{margin:16px 0 4px;font-size:12.5px;color:var(--ink-soft)}
+.welcome-hint b{color:var(--point)}
+.welcome-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 26px 22px;border-top:1px solid var(--line);margin-top:14px}
+.wel-check{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;user-select:none}
+.wel-check input{width:16px;height:16px;accent-color:var(--point);cursor:pointer}
+.wel-close-btn{background:var(--point);color:#fff;font-weight:700;font-size:14px;padding:10px 26px;border-radius:10px;box-shadow:var(--shadow-sm);transition:background .12s,transform .1s}
+.wel-close-btn:hover{background:var(--point-deep)}
+.wel-close-btn:active{transform:translateY(1px)}
+@media (max-width:760px){
+  .modal.welcome{max-width:100%}
+  .welcome-foot{padding:14px 18px 18px}
+  .welcome-body{padding:8px 18px 4px}
+  .wel-check{font-size:12px}
+  .wel-close-btn{padding:10px 20px}
+}
+
 /* ===== Toast ===== */
 .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);z-index:90;background:var(--ink);color:#fff;padding:11px 20px;border-radius:11px;font-size:13px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.22s;max-width:90vw}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
