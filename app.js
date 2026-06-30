@@ -894,14 +894,25 @@
   $('#closeHelp').addEventListener('click', () => $('#helpModal').classList.remove('show'));
   $('#helpModal').addEventListener('click', e => { if (e.target === $('#helpModal')) $('#helpModal').classList.remove('show'); });
 
-  // welcome / onboarding popup (first visit; suppressible per-day)
-  function todayStr() { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+  // welcome / onboarding popup — tool-prefixed keys ('tmm.' = tool-mindmap) so they
+  // never collide with other tools on the shared hanariago.github.io origin.
+  // Behaviour (per 툴 개발 가이드 '첫 방문 가이드 팝업'):
+  //  · "오늘 다시 보지 않기" 체크 후 닫으면 → 그날 하루 안 뜸 (localStorage 날짜)
+  //  · 체크 없이 닫기/✕ → 같은 세션 동안 안 뜸 (sessionStorage), 새 방문 때 다시
+  const GUIDE_DATE_KEY = 'tmm.guideHideDate', GUIDE_SEEN_KEY = 'tmm.guideSeen';
+  function todayStr() { return new Date().toISOString().slice(0, 10); }
   function showWelcome() { $('#welcomeHideToday').checked = false; $('#welcomeModal').classList.add('show'); }
   function closeWelcome() {
-    if ($('#welcomeHideToday').checked) localStorage.setItem('tmm.welcomeHideDate', todayStr());
+    try { if ($('#welcomeHideToday').checked) localStorage.setItem(GUIDE_DATE_KEY, todayStr()); } catch (e) {}
+    try { sessionStorage.setItem(GUIDE_SEEN_KEY, '1'); } catch (e) {}
     $('#welcomeModal').classList.remove('show');
   }
-  function maybeShowWelcome() { if (localStorage.getItem('tmm.welcomeHideDate') !== todayStr()) showWelcome(); }
+  function maybeShowWelcome() {
+    let hide = null, seen = null;
+    try { hide = localStorage.getItem(GUIDE_DATE_KEY); } catch (e) {}
+    try { seen = sessionStorage.getItem(GUIDE_SEEN_KEY); } catch (e) {}
+    if (hide !== todayStr() && !seen) showWelcome();
+  }
   $('#welcomeClose').addEventListener('click', closeWelcome);
   $('#welcomeX').addEventListener('click', closeWelcome);
   $('#welcomeModal').addEventListener('click', e => { if (e.target === $('#welcomeModal')) closeWelcome(); });
